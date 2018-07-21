@@ -1386,7 +1386,7 @@ int64_t GetProofOfWorkReward(int nHeight, int64_t nFees)
     }
 
     // add fees.
-    return nSubsidy + nFees;
+    return nSubsidy;
 }
 
 // miner's coin stake reward
