@@ -51,7 +51,7 @@ CBigNum bnProofOfStakeLimit(~uint256(0) >> 20);
 unsigned int nStakeMinAge = 24 * 60 * 60; // 24 hour
 unsigned int nModifierInterval = 2 * 60; // time to elapse before new modifier is computed
 
-int nCoinbaseMaturity = 90;
+int nCoinbaseMaturity = 1;
 CBlockIndex* pindexGenesisBlock = NULL;
 int nBestHeight = -1;
 
@@ -62,7 +62,7 @@ uint256 hashBestChain = 0;
 CBlockIndex* pindexBest = NULL;
 int64_t nTimeBestReceived = 0;
 bool fImporting = false;
-bool fReindex = false;
+bool fReindex = true;
 bool fAddrIndex = false;
 bool fHaveGUI = false;
 
@@ -1361,25 +1361,25 @@ int64_t GetProofOfWorkReward(int nHeight, int64_t nFees)
     int64_t nSubsidy = 0 * COIN;
 
     if (nHeight == 1) {
-        nSubsidy = 475000 * COIN; // premine
+        nSubsidy = 5000000000 * COIN; // premine
     }
     else if (nHeight > 1 && nHeight <= 100) {
         nSubsidy = 1 * COIN; // instamine prevention
     }
     else if (nHeight > 100 && nHeight <= 200) {
-        nSubsidy = 5 * COIN; // instamine prevention
+        nSubsidy = 1 * COIN; // instamine prevention
     }
     else if (nHeight > 200 && nHeight <= 300) {
-        nSubsidy = 10 * COIN; // instamine prevention
+        nSubsidy = 1 * COIN; // instamine prevention
     }
     else if (nHeight > 300 && nHeight <= 400) {
-        nSubsidy = 15 * COIN; // instamine prevention
+        nSubsidy = 0 * COIN; // instamine prevention
     }
     else if (nHeight > 400 && nHeight <= 1499) {
-        nSubsidy = 25 * COIN; // initial block reward
+        nSubsidy = 0 * COIN; // initial block reward
     }
     else if (nHeight > 1499 && nHeight <= 210000) {
-        nSubsidy = 15 * COIN; // initial block reward
+        nSubsidy = 0 * COIN; // initial block reward
     }
     else if (nHeight > 210000) {
         nSubsidy = 0 * COIN; // initial block reward
@@ -1395,23 +1395,23 @@ int64_t GetProofOfStakeReward(const CBlockIndex* pindexPrev, int64_t nCoinAge, i
     int64_t nSubsidy = 0;
 
     if (pindexBest->nHeight+1 > 1500 && pindexBest->nHeight+1 <= 210000)  {
-        nSubsidy = 35 * COIN;
+        nSubsidy = 1 * COIN;
     }
     else if (pindexBest->nHeight+1 > 210000 && pindexBest->nHeight+1 <= 420001)  {
-        nSubsidy = 20 * COIN;
+        nSubsidy = 1 * COIN;
     }
     else if (pindexBest->nHeight+1 > 420001 && pindexBest->nHeight+1 <= 630001) {
-        nSubsidy = 10 * COIN;
+        nSubsidy = 1 * COIN;
     }
     else if (pindexBest->nHeight+1 > 630001 && pindexBest->nHeight+1 <= 840001) {
-        nSubsidy = 5 * COIN;
+        nSubsidy = 1 * COIN;
     }
     else if (pindexBest->nHeight+1 > 840001 && pindexBest->nHeight+1 <= 1890000) {
 	// end game - further discussion needed
-        nSubsidy = 3 * COIN;
+        nSubsidy = 1 * COIN;
     } else if (pindexBest->nHeight+1 > 1890000) {
 	// end game - further discussion needed
-        nSubsidy = 3 * COIN;
+        nSubsidy = 1 * COIN;
         nSubsidy >>= ((pindexBest->nHeight + 210000) / 1050000);
     }
 
@@ -4526,7 +4526,7 @@ int64_t GetMasternodePayment(int nHeight, int64_t blockValue)
     if (nHeight < 1500) {
 	ret = 0;
     } else if (nHeight >= 1500 && nHeight <= 210000) {
-        ret = blockValue * 25 / 35; // MN Reward 71%
+        ret = blockValue * 45 / 50; // MN Reward 90%
     } else if (nHeight > 210000) {
 	ret = blockValue / 2 ; // MN Reward 50%
     }
