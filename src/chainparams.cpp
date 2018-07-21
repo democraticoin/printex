@@ -59,13 +59,13 @@ public:
         // The message start string is designed to be unlikely to occur in normal data.
         // The characters are rarely used upper ASCII, not valid as UTF-8, and produce
         // a large 4-byte int at any alignment.
-        pchMessageStart[0] = 0xcd;
-        pchMessageStart[1] = 0x1e;
-        pchMessageStart[2] = 0xb0;
-        pchMessageStart[3] = 0x0e;
+        pchMessageStart[0] = 0x1A;
+        pchMessageStart[1] = 0xA1;
+        pchMessageStart[2] = 0xbb;
+        pchMessageStart[3] = 0xe5;
         vAlertPubKey = ParseHex("0457b81bcd952358c8a2cca4b31977d4b1a36772c4e983abeced5b73378cd5a71e6356229cbd5c9c9879fa2cf0e3529424b070c148f68a210125b95a7a8f78d151");
-        nDefaultPort = 9107;
-        nRPCPort = 9108;
+        nDefaultPort = 36915;
+        nRPCPort = 51963;
         bnProofOfWorkLimit = CBigNum(~uint256(0) >> 16);
 
             const char* pszTimestamp = "1525842106 seconds since Jan 01 1970. (UTC)";
@@ -89,21 +89,22 @@ public:
         assert(hashGenesisBlock == uint256("0x00004cd62c655e1492e4d87736f23fdd6ad260980007b72bc33373aed2b79258"));
         assert(genesis.hashMerkleRoot == uint256("0x0492a565583151305c2246f03a4fa2297a90b4633e4f5da358b23d9691e86fca"));
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,55);
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,30);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,16);
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,63);
         base58Prefixes[STEALTH_ADDRESS] = std::vector<unsigned char>(1,75);
         base58Prefixes[EXT_PUBLIC_KEY] = list_of(0x04)(0x88)(0xB2)(0x1E).convert_to_container<std::vector<unsigned char> >();
         base58Prefixes[EXT_SECRET_KEY] = list_of(0x04)(0x88)(0xAD)(0xE4).convert_to_container<std::vector<unsigned char> >();
 
-        vSeeds.push_back(CDNSSeedData("1","159.203.13.242"));   
+        vFixedSeeds.clear();
+        vSeeds.clear();   
      
         convertSeeds(vFixedSeeds, pnSeed, ARRAYLEN(pnSeed), nDefaultPort);
 
         nPoolMaxTransactions = 3;
 
         strDarksendPoolDummyAddress = "PHhWC9PRgMzm6z5Xx3zjCSTG5zJ5u71UbL";
-        nLastPOWBlock = 210000;
+        nLastPOWBlock = 21000;
         nPOSStartBlock = 1500;
     }
 
@@ -130,14 +131,14 @@ public:
         // The message start string is designed to be unlikely to occur in normal data.
         // The characters are rarely used upper ASCII, not valid as UTF-8, and produce
         // a large 4-byte int at any alignment.
-        pchMessageStart[0] = 0x0e;
-        pchMessageStart[1] = 0xd2;
-        pchMessageStart[2] = 0x10;
-        pchMessageStart[3] = 0xfe;
+        pchMessageStart[0] = 0xb1;
+        pchMessageStart[1] = 0xd3;
+        pchMessageStart[2] = 0x14;
+        pchMessageStart[3] = 0xff;
         bnProofOfWorkLimit = CBigNum(~uint256(0) >> 16);
         vAlertPubKey = ParseHex("0435e550759fa941172546f9930d0f30e64c4633bd4a0d5f4388567d45e58f490c78cca77cb5f56f9fb25f26bf89eb6c9efe8bc0eb327b1d4078c67ba56c79c870");
-        nDefaultPort = 19107;
-        nRPCPort = 19108;
+        nDefaultPort = 19102;
+        nRPCPort = 19558;
         bnProofOfWorkLimit = CBigNum(~uint256(0) >> 8);
         strDataDir = "testnet";
 
